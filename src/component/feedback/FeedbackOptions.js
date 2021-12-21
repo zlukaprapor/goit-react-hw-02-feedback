@@ -1,72 +1,26 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
-class FeedbackOptions extends React.Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-    total: 0,
-  };
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  return (
+    <div>
+      {options.map((el) => (
+        <button
+          key={el}
+          type="button"
+          onClick={() => {
+            onLeaveFeedback(el);
+          }}
+        >
+          {el}
+        </button>
+      ))}
+    </div>
+  );
+};
 
-  hendleGood = () => {
-    this.setState((prevState) => {
-      return {
-        good: prevState.good + 1,
-      };
-    });
-  };
-  hendleNeutral = () => {
-    this.setState((prevState) => {
-      return {
-        neutral: prevState.neutral + 1,
-      };
-    });
-  };
-  hendleBad = () => {
-    this.setState((prevState) => {
-      return {
-        bad: prevState.bad + 1,
-      };
-    });
-  };
-
-  countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
-  };
-  countPositiveFeedbackPercentage = () => {
-    const total = this.countTotalFeedback();
-    return total ? ((this.state.good * 100) / total).toFixed(0) : 0;
-  };
-
-  render() {
-    return (
-      <div>
-        <h1>Please leave feedback</h1>
-        <div>
-          <button type="button" onClick={this.hendleGood}>
-            Good
-          </button>
-          <button type="button" onClick={this.hendleNeutral}>
-            Neutral
-          </button>
-          <button type="button" onClick={this.hendleBad}>
-            Bad
-          </button>
-        </div>
-        <div>
-          <h2>Statistics</h2>
-          <ul>
-            {/* <li>No feedback given:</li> */}
-            <li>Good:{this.state.good}</li>
-            <li>Neutral:{this.state.neutral}</li>
-            <li>Bad:{this.state.bad}</li>
-            <li>Total:{this.countTotalFeedback()}</li>
-            <li>Positive feedback:{this.countPositiveFeedbackPercentage()}</li>
-          </ul>
-        </div>
-      </div>
-    );
-  }
-}
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 
 export default FeedbackOptions;
