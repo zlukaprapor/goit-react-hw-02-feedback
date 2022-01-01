@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import { Container, Button } from './Feedback.styled';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <div>
+    <Container>
       {options.map((el) => (
-        <button
+        <Button
           key={el}
           type="button"
           onClick={() => {
@@ -12,9 +13,9 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
           }}
         >
           {el}
-        </button>
+        </Button>
       ))}
-    </div>
+    </Container>
   );
 };
 

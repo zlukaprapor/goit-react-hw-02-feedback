@@ -1,9 +1,10 @@
-import React from 'react';
-import Statistics from './component/feedback/Statistics';
-import FeedbackOptions from './component/feedback/FeedbackOptions';
-import Notification from './component/feedback/Notification';
-import Section from './component/feedback/Section';
-class App extends React.Component {
+import React, { Component } from 'react';
+import Statistics from './component/Statistics';
+import FeedbackOptions from './component/FeedbackOptions';
+import Notification from './component/Notification';
+import Section from './component/Section';
+
+class App extends Component {
   state = {
     good: 0,
     neutral: 0,
